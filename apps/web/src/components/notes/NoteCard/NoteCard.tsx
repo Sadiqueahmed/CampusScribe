@@ -1,6 +1,6 @@
 import { Note } from '../../../types/note.types';
 import { Link } from 'react-router-dom';
-import { BookOpen, MapPin, Tag } from 'lucide-react';
+import { BookOpen, MapPin, Tag, ShoppingCart } from 'lucide-react';
 
 interface NoteCardProps {
     note: Note;
@@ -8,13 +8,14 @@ interface NoteCardProps {
 
 export const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
     return (
-        <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
+        <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl relative">
+            <div className="absolute top-4 left-4 z-10 rounded-md bg-green-500 px-2 py-1 text-xs font-bold text-white shadow-sm">
+                -20%
+            </div>
+
             <div className="relative h-48 w-full bg-brand-50 flex items-center justify-center overflow-hidden">
                 {/* Abstract pattern or placeholder for Document cover */}
-                <BookOpen className="h-16 w-16 text-brand-200" />
-                <div className="absolute top-4 right-4 rounded-full bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-sm flex items-center gap-1">
-                    ₹{note.price.toFixed(2)}
-                </div>
+                <BookOpen className="h-16 w-16 text-brand-200 group-hover:scale-110 transition-transform duration-300" />
             </div>
 
             <div className="flex flex-1 flex-col p-6">
@@ -33,24 +34,29 @@ export const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
                     {note.description}
                 </p>
 
-                <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-4">
-                    <div className="flex flex-col">
-                        <span className="text-sm font-medium text-gray-900 truncate max-w-[120px]">
-                            {note.seller?.name || 'Anonymous'}
-                        </span>
-                        {note.seller?.university && (
-                            <span className="flex items-center text-xs text-gray-500 truncate max-w-[120px]">
-                                <MapPin size={12} className="mr-1 shrink-0" />
-                                {note.seller.university}
+                <div className="mt-auto flex flex-col gap-4 border-t border-gray-100 pt-4">
+                    <div className="flex items-center justify-between">
+                        <div className="flex flex-col">
+                            <div className="flex items-center gap-2">
+                                <span className="text-xl font-black text-gray-900">
+                                    ₹{note.price.toFixed(2)}
+                                </span>
+                                <span className="text-sm text-gray-400 line-through">
+                                    ₹{(note.price * 1.25).toFixed(2)}
+                                </span>
+                            </div>
+                            <span className="text-xs text-green-600 font-semibold gap-1 flex items-center mt-0.5">
+                                <MapPin size={10} /> {note.seller?.university || 'Global'}
                             </span>
-                        )}
+                        </div>
                     </div>
 
                     <Link
                         to={`/notes/${note.id}`}
-                        className="rounded-lg bg-gray-50 px-4 py-2 text-sm font-medium text-brand-600 transition-colors hover:bg-brand-50"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-brand-500/20 transition-all hover:bg-brand-600 hover:shadow-brand-500/40 active:scale-95"
                     >
-                        Preview
+                        <ShoppingCart size={16} />
+                        Buy Now
                     </Link>
                 </div>
             </div>
