@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../Button/Button';
-import { BookOpen, Search, ShoppingCart, User } from 'lucide-react';
+import { Search, ShoppingCart, User } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
 import { useState } from 'react';
+import logo from '../../../assets/logo.png';
 
 export const Navbar = () => {
     const { user, logout } = useAuth();
@@ -22,9 +23,7 @@ export const Navbar = () => {
                 {/* Logo */}
                 <div className="flex items-center space-x-2">
                     <Link to="/" className="flex items-center space-x-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 text-white">
-                            <BookOpen size={20} />
-                        </div>
+                        <img src={logo} alt="CampusScribe Logo" className="h-10 w-auto object-contain" />
                         <span className="text-xl font-bold tracking-tight text-gray-900">
                             CampusScribe
                         </span>
