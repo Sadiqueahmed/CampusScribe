@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String        @id @default(uuid())
+  email          String        @unique
+  passwordHash   String
+  name           String
+  role           Role          @default(BUYER)
+  university     String?
+  isVerified     Boolean       @default(false)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  
+  notes          Note[]        @relation("SellerNotes")
+  purchases      Purchase[]    @relation("BuyerPurchases")
+  reviews        Review[]      @relation("UserReviews")
+  transactions   Transaction[]
+}
+
+enum Role {
+  BUYER
+  SELLER
+  ADMIN
+}
+
+model Note {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  price       Float
+  fileUrl     String     // S3 url for full document
+  previewUrl  String     // S3 url for preview pages
+  sellerId    String
+  categoryId  String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  seller      User       @relation("SellerNotes", fields: [sellerId], references: [id])
+  category    Category   @relation(fields: [categoryId], references: [id])
+  purchases   Purchase[]
+  reviews     Review[]
+}
+
+model Category {
+  id         String   @id @default(uuid())
+  university String
+  course     String
+  subject    String
+  notes      Note[]
+
+  @@unique([university, course, subject])
+}
+
+model Purchase {
+  id             String   @id @default(uuid())
+  buyerId        String
+  noteId         String
+  amount         Float
+  stripeChargeId String?
+  createdAt      DateTime @default(now())
+
+  buyer          User     @relation("BuyerPurchases", fields: [buyerId], references: [id])
+  note           Note     @relation(fields: [noteId], references: [id])
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  comment   String?
+  userId    String
+  noteId    String
+  createdAt DateTime @default(now())
+
+  user      User     @relation("UserReviews", fields: [userId], references: [id])
+  note      Note     @relation(fields: [noteId], references: [id])
+
+  @@unique([userId, noteId]) // One review per user per note
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  userId    String
+  amount    Float
+  type      TxType
+  status    TxStatus
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+enum TxType {
+  PAYMENT
+  WITHDRAWAL
+}
+
+enum TxStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
