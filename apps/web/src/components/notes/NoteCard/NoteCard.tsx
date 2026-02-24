@@ -12,8 +12,8 @@ export const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
             <div className="relative h-48 w-full bg-brand-50 flex items-center justify-center overflow-hidden">
                 {/* Abstract pattern or placeholder for Document cover */}
                 <BookOpen className="h-16 w-16 text-brand-200" />
-                <div className="absolute top-4 right-4 rounded-full bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-sm">
-                    ${note.price.toFixed(2)}
+                <div className="absolute top-4 right-4 rounded-full bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-sm flex items-center gap-1">
+                    ₹{note.price.toFixed(2)}
                 </div>
             </div>
 
@@ -35,12 +35,12 @@ export const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
 
                 <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-4">
                     <div className="flex flex-col">
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-sm font-medium text-gray-900 truncate max-w-[120px]">
                             {note.seller?.name || 'Anonymous'}
                         </span>
                         {note.seller?.university && (
-                            <span className="flex items-center text-xs text-gray-500">
-                                <MapPin size={12} className="mr-1" />
+                            <span className="flex items-center text-xs text-gray-500 truncate max-w-[120px]">
+                                <MapPin size={12} className="mr-1 shrink-0" />
                                 {note.seller.university}
                             </span>
                         )}
