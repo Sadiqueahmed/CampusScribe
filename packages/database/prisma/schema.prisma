@@ -10,9 +10,10 @@ datasource db {
 model User {
   id             String        @id @default(uuid())
   email          String        @unique
-  passwordHash   String
+  passwordHash   String?
   name           String
   role           Role          @default(BUYER)
+  authProvider   AuthProvider  @default(LOCAL)
   university     String?
   isVerified     Boolean       @default(false)
   createdAt      DateTime      @default(now())
@@ -28,6 +29,11 @@ enum Role {
   BUYER
   SELLER
   ADMIN
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
 }
 
 model Note {

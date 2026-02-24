@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { Login } from './pages/Auth/Login';
 import { Register } from './pages/Auth/Register';
 import { Browse } from './pages/Browse/Browse';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import heroImage from './assets/study.png';
 
 // Simplified layout for early phase
@@ -52,21 +53,23 @@ function Home() {
 
 function App() {
     return (
-        <AuthProvider>
-            <Router>
-                <div className="min-h-screen font-sans bg-white selection:bg-brand-100 selection:text-brand-900">
-                    <Navbar />
-                    <main>
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/browse" element={<Browse />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                        </Routes>
-                    </main>
-                </div>
-            </Router>
-        </AuthProvider>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ''}>
+            <AuthProvider>
+                <Router>
+                    <div className="min-h-screen font-sans bg-white selection:bg-brand-100 selection:text-brand-900">
+                        <Navbar />
+                        <main>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/browse" element={<Browse />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/register" element={<Register />} />
+                            </Routes>
+                        </main>
+                    </div>
+                </Router>
+            </AuthProvider>
+        </GoogleOAuthProvider>
     );
 }
 

@@ -21,6 +21,19 @@ export class AuthController {
         }
     }
 
+    static async googleLogin(req: Request, res: Response) {
+        try {
+            const { idToken } = req.body;
+            if (!idToken) {
+                return res.status(400).json({ error: 'idToken is required' });
+            }
+            const data = await AuthService.googleLogin(idToken);
+            res.status(200).json({ message: 'Google login successful', data });
+        } catch (error: any) {
+            res.status(401).json({ error: error.message });
+        }
+    }
+
     static async getProfile(req: AuthRequest, res: Response) {
         try {
             const profile = await AuthService.getProfile(req.user.id);

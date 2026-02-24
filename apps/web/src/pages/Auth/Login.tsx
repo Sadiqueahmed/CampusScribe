@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { authService } from '../../services/auth.service';
 import { Button } from '../../components/common/Button/Button';
+import { GoogleLogin } from '@react-oauth/google';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -33,6 +34,24 @@ export const Login = () => {
         }
     };
 
+    const handleGoogleSuccess = async (credentialResponse: any) => {
+        try {
+            setLoading(true);
+            setError('');
+            const response = await authService.googleLogin(credentialResponse.credential);
+            if (response.token && response.data) {
+                login(response.token, response.data);
+                navigate('/browse');
+            } else {
+                setError('Google login failed: Invalid response');
+            }
+        } catch (err: any) {
+            setError(err.response?.data?.error || 'Failed to login with Google');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-sm border border-gray-100">
@@ -49,6 +68,22 @@ export const Login = () => {
                 </div>
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                    <div className="flex justify-center w-full">
+                        <GoogleLogin
+                            onSuccess={handleGoogleSuccess}
+                            onError={() => setError('Google Login Failed')}
+                        />
+                    </div>
+
+                    <div className="relative">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-300" />
+                        </div>
+                        <div className="relative flex justify-center text-sm">
+                            <span className="bg-white px-2 text-gray-500">Or continue with email</span>
+                        </div>
+                    </div>
+
                     {error && (
                         <div className="rounded-md bg-red-50 p-4">
                             <p className="text-sm text-red-700">{error}</p>
