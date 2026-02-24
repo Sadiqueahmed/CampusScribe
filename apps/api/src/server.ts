@@ -1,5 +1,9 @@
 import * as dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
 import app from './app';
+import routes from './routes';
 // import { prisma } from '@campus-scribe/database';
 
 dotenv.config();
@@ -20,6 +24,15 @@ if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
     };
     startServer();
 }
+
+app.use(cors());
+app.use(express.json());
+
+// Serve static files from the uploads directory
+app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+
+// API Routes
+app.use('/api/v1', routes);
 
 // Export the Express API for Vercel Serverless Functions
 export default app;
