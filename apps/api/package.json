@@ -8,7 +8,11 @@
         "start": "node dist/server.js"
     },
     "dependencies": {
+        "@aws-sdk/client-s3": "^3.998.0",
+        "@aws-sdk/s3-request-presigner": "^3.998.0",
         "@campus-scribe/database": "*",
+        "@types/nodemailer": "^7.0.11",
+        "@types/uuid": "^10.0.0",
         "bcrypt": "^5.1.1",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
@@ -16,7 +20,11 @@
         "google-auth-library": "^10.5.0",
         "helmet": "^7.1.0",
         "jsonwebtoken": "^9.0.2",
-        "morgan": "^1.10.0"
+        "morgan": "^1.10.0",
+        "nodemailer": "^8.0.1",
+        "socket.io": "^4.8.3",
+        "stripe": "^15.12.0",
+        "uuid": "^13.0.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
@@ -25,6 +33,7 @@
         "@types/jsonwebtoken": "^9.0.6",
         "@types/morgan": "^1.9.9",
         "@types/node": "^20.12.0",
+        "@types/stripe": "^8.0.417",
         "ts-node-dev": "^2.0.0",
         "typescript": "^5.0.2"
     }

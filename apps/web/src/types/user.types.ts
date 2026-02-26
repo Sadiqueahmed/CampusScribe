@@ -6,6 +6,14 @@ export interface UserProfile {
     university?: string;
     isVerified: boolean;
     createdAt: string;
+    bio?: string;
+    avatar?: string;
+    isSellerVerified: boolean;
+    sellerVerifiedAt?: string;
+    _count?: {
+        notes: number;
+        reviews: number;
+    };
 }
 
 export interface AuthResponse {

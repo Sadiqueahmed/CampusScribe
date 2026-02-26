@@ -56,6 +56,8 @@ async function main() {
             price: 15.99,
             fileUrl: 'https://example.com/notes/cs50.pdf',
             previewUrl: 'https://example.com/notes/cs50-preview.pdf',
+            fileType: 'application/pdf',
+            fileSize: 2500000,
             sellerId: seller.id,
             categoryId: cs101.id
         }
