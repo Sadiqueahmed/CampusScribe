@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/common/Navbar/Navbar';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
@@ -30,8 +30,9 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ShieldCheck, TrendingUp, Users, Calculator, Microscope, Palette, Briefcase } from 'lucide-react';
 import heroImage from './assets/study.png';
 
-// Simplified layout for early phase
+// Home component with navigation
 function Home() {
+    const navigate = useNavigate();
     return (
         <div className="relative min-h-[calc(100vh-4rem)] bg-white overflow-hidden">
             <div className="mx-auto max-w-7xl pt-16 pb-24 sm:pt-24 sm:pb-32 lg:pb-40 lg:pt-32 px-4 sm:px-6 lg:px-8">
@@ -45,10 +46,16 @@ function Home() {
                             The ultimate marketplace to buy and sell authentic class notes, study guides, and flashcards from top students at your university.
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
-                            <button className="w-full sm:w-auto px-8 py-3.5 bg-brand-500 text-white rounded-lg font-semibold hover:bg-brand-600 shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5 text-lg">
+                            <button 
+                                onClick={() => navigate('/browse')}
+                                className="w-full sm:w-auto px-8 py-3.5 bg-brand-500 text-white rounded-lg font-semibold hover:bg-brand-600 shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5 text-lg"
+                            >
                                 Start Browsing
                             </button>
-                            <button className="w-full sm:w-auto px-8 py-3.5 bg-white text-gray-900 border-2 border-gray-200 rounded-lg font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all text-lg shadow-sm">
+                            <button 
+                                onClick={() => navigate('/register')}
+                                className="w-full sm:w-auto px-8 py-3.5 bg-white text-gray-900 border-2 border-gray-200 rounded-lg font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all text-lg shadow-sm"
+                            >
                                 Become a Seller
                             </button>
                         </div>

@@ -5,6 +5,7 @@ import { authMiddleware } from '../middleware/auth.middleware';
 const router = Router();
 
 // Public routes
+router.get('/', NotesController.getAllNotes);
 router.get('/trending', NotesController.getTrendingNotes);
 router.get('/featured', NotesController.getFeaturedNotes);
 router.get('/categories', NotesController.getCategories);
