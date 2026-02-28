@@ -14,6 +14,7 @@ export interface Note {
     isFeatured?: boolean;
     viewCount?: number;
     purchaseCount?: number;
+    averageRating?: number;
     createdAt: string;
     updatedAt: string;
     seller?: { id: string; name: string; university?: string; avatar?: string };
