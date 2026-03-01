@@ -43,7 +43,7 @@ export const emailService = {
                     <p>Your order has been confirmed. Here are the details:</p>
                     <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; margin: 16px 0;">
                         <p><strong>Order ID:</strong> ${orderDetails.id}</p>
-                        <p><strong>Total:</strong> $${orderDetails.total.toFixed(2)}</p>
+                        <p><strong>Total:</strong> ₹${orderDetails.total.toFixed(2)}</p>
                         <p><strong>Items:</strong> ${orderDetails.items.length} notes</p>
                     </div>
                     <a href="${process.env.FRONTEND_URL}/orders" 
@@ -67,8 +67,8 @@ export const emailService = {
                     <p>Someone just purchased your notes:</p>
                     <div style="background: #f3f4f6; padding: 16px; border-radius: 8px; margin: 16px 0;">
                         <p><strong>Note:</strong> ${saleDetails.noteTitle}</p>
-                        <p><strong>Amount Earned:</strong> $${saleDetails.amount.toFixed(2)}</p>
-                        <p><strong>Your Commission (90%):</strong> $${(saleDetails.amount * 0.9).toFixed(2)}</p>
+                        <p><strong>Amount Earned:</strong> ₹${saleDetails.amount.toFixed(2)}</p>
+                        <p><strong>Your Commission (90%):</strong> ₹${(saleDetails.amount * 0.9).toFixed(2)}</p>
                     </div>
                     <a href="${process.env.FRONTEND_URL}/seller/sales" 
                        style="display: inline-block; background: #10B981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px;">

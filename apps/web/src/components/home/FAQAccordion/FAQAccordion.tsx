@@ -71,7 +71,7 @@ export const FAQAccordion = () => {
                                 <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
                                 <ChevronDown 
                                     size={20} 
-                                    className={`text-brand-500 transition-transform ${openIndex === index ? 'rotate-180' : ''}`}
+                                    className={`text-brand-500 transition-transform ₹{openIndex === index ? 'rotate-180' : ''}`}
                                 />
                             </button>
                             <AnimatePresence>

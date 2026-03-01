@@ -70,7 +70,7 @@ export function SalesHistory() {
             ['Date', 'Note Title', 'Buyer', 'Amount', 'Platform Fee', 'Net Amount', 'Status'].join(','),
             ...sales.map(sale => [
                 new Date(sale.createdAt).toLocaleDateString(),
-                `"${sale.noteTitle}"`,
+                `"₹{sale.noteTitle}"`,
                 sale.buyerName,
                 sale.amount.toFixed(2),
                 sale.platformFee.toFixed(2),
@@ -83,7 +83,7 @@ export function SalesHistory() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `sales-history-${new Date().toISOString().split('T')[0]}.csv`;
+        a.download = `sales-history-₹{new Date().toISOString().split('T')[0]}.csv`;
         a.click();
     };
 
@@ -137,7 +137,7 @@ export function SalesHistory() {
                             <div>
                                 <p className="text-sm font-medium text-gray-600">Total Revenue</p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    ${stats?.totalRevenue?.toFixed(2) || '0.00'}
+                                    ₹{stats?.totalRevenue?.toFixed(2) || '0.00'}
                                 </p>
                             </div>
                             <div className="p-3 bg-blue-100 rounded-lg">
@@ -193,7 +193,7 @@ export function SalesHistory() {
                             <div>
                                 <p className="text-sm font-medium text-gray-600">Net Earnings</p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    ${stats?.netEarnings?.toFixed(2) || '0.00'}
+                                    ₹{stats?.netEarnings?.toFixed(2) || '0.00'}
                                 </p>
                             </div>
                             <div className="p-3 bg-purple-100 rounded-lg">
@@ -210,7 +210,7 @@ export function SalesHistory() {
                             <div>
                                 <p className="text-sm font-medium text-gray-600">Avg Order Value</p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    ${stats?.averageOrderValue?.toFixed(2) || '0.00'}
+                                    ₹{stats?.averageOrderValue?.toFixed(2) || '0.00'}
                                 </p>
                             </div>
                             <div className="p-3 bg-yellow-100 rounded-lg">
@@ -236,7 +236,7 @@ export function SalesHistory() {
                                 <button
                                     key={tab.key}
                                     onClick={() => setTimeRange(tab.key as any)}
-                                    className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                                    className={`py-4 px-1 border-b-2 font-medium text-sm ₹{
                                         timeRange === tab.key
                                             ? 'border-brand-500 text-brand-600'
                                             : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -314,13 +314,13 @@ export function SalesHistory() {
                                                     {sale.buyerName}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                    ${sale.amount.toFixed(2)}
+                                                    ₹{sale.amount.toFixed(2)}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
-                                                    ${sale.netAmount.toFixed(2)}
+                                                    ₹{sale.netAmount.toFixed(2)}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap">
-                                                    <span className={`px-2 py-1 text-xs rounded-full ${
+                                                    <span className={`px-2 py-1 text-xs rounded-full ₹{
                                                         sale.status === 'COMPLETED'
                                                             ? 'bg-green-100 text-green-800'
                                                             : sale.status === 'PENDING'
@@ -332,7 +332,7 @@ export function SalesHistory() {
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <Link
-                                                        to={`/notes/${sale.noteId}`}
+                                                        to={`/notes/₹{sale.noteId}`}
                                                         className="text-brand-500 hover:text-brand-600"
                                                     >
                                                         <ChevronRight className="w-5 h-5 inline" />

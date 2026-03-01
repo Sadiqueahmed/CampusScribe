@@ -103,7 +103,7 @@ export const MobileDrawer = ({ isOpen, onClose, user, logout }: MobileDrawerProp
                             <Briefcase size={20} />
                             Categories
                         </span>
-                        <span className={`transform transition-transform ${showCategories ? 'rotate-180' : ''}`}>
+                        <span className={`transform transition-transform ₹{showCategories ? 'rotate-180' : ''}`}>
                             ▼
                         </span>
                     </button>

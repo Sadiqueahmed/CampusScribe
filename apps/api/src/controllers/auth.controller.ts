@@ -34,6 +34,20 @@ export class AuthController {
         }
     }
 
+    // Clerk sync endpoint - sync Clerk user to database
+    static async clerkSync(req: Request, res: Response) {
+        try {
+            const { clerkId, email, name, avatar } = req.body;
+            if (!clerkId) {
+                return res.status(400).json({ error: 'clerkId is required' });
+            }
+            const data = await AuthService.syncClerkUser({ clerkId, email, name, avatar });
+            res.status(200).json({ data });
+        } catch (error: any) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+
     static async getProfile(req: AuthRequest, res: Response) {
         try {
             const profile = await AuthService.getProfile(req.user.id);

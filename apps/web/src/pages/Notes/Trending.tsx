@@ -79,7 +79,7 @@ export function Trending() {
                                 <button
                                     key={tab.key}
                                     onClick={() => setTimeRange(tab.key as any)}
-                                    className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                                    className={`py-4 px-1 border-b-2 font-medium text-sm ₹{
                                         timeRange === tab.key
                                             ? 'border-brand-500 text-brand-600'
                                             : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -150,7 +150,7 @@ export function Trending() {
                                 className="bg-white rounded-xl shadow-sm p-6 flex items-center gap-6 hover:shadow-md transition-shadow"
                             >
                                 {/* Rank */}
-                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ₹{
                                     index === 0 ? 'bg-yellow-100 text-yellow-700' :
                                     index === 1 ? 'bg-gray-100 text-gray-700' :
                                     index === 2 ? 'bg-orange-100 text-orange-700' :
@@ -162,7 +162,7 @@ export function Trending() {
                                 {/* Content */}
                                 <div className="flex-1">
                                     <Link 
-                                        to={`/notes/${note.id}`}
+                                        to={`/notes/₹{note.id}`}
                                         className="text-lg font-semibold text-gray-900 hover:text-brand-600 transition-colors"
                                     >
                                         {note.title}
@@ -186,7 +186,7 @@ export function Trending() {
                                 {/* Price & Action */}
                                 <div className="flex items-center gap-4">
                                     <span className="text-xl font-bold text-brand-600">
-                                        ${note.price.toFixed(2)}
+                                        ₹{note.price.toFixed(2)}
                                     </span>
                                     <button
                                         onClick={() => handleAddToCart(note.id)}

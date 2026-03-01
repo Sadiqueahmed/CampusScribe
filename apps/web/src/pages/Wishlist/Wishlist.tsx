@@ -81,13 +81,13 @@ export const Wishlist = () => {
                         <div key={item.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                             <div className="p-6">
                                 <h3 
-                                    onClick={() => navigate(`/notes/${item.noteId}`)}
+                                    onClick={() => navigate(`/notes/₹{item.noteId}`)}
                                     className="text-lg font-semibold text-gray-900 mb-2 cursor-pointer hover:text-brand-600"
                                 >
                                     {item.title}
                                 </h3>
                                 <p className="text-sm text-gray-600 mb-4">by {item.seller.name}</p>
-                                <p className="text-brand-600 font-bold text-xl mb-4">${item.price.toFixed(2)}</p>
+                                <p className="text-brand-600 font-bold text-xl mb-4">₹{item.price.toFixed(2)}</p>
                                 
                                 <div className="flex gap-2">
                                     <Button

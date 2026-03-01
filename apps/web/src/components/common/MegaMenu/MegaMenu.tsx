@@ -63,7 +63,7 @@ export const MegaMenu = () => {
         >
             <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-600 transition-colors py-2">
                 Categories
-                <ChevronDown size={16} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown size={16} className={`transition-transform ₹{isOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {/* Mega Menu Dropdown */}
@@ -76,7 +76,7 @@ export const MegaMenu = () => {
                                 <button
                                     key={idx}
                                     onMouseEnter={() => setActiveCategory(idx)}
-                                    className={`w-full flex items-center gap-3 px-5 py-3.5 text-left transition-colors ${
+                                    className={`w-full flex items-center gap-3 px-5 py-3.5 text-left transition-colors ₹{
                                         activeCategory === idx ? 'bg-white text-brand-600' : 'text-gray-700 hover:bg-gray-100'
                                     }`}
                                 >
@@ -104,7 +104,7 @@ export const MegaMenu = () => {
                                     {categories[activeCategory].subcategories.map((sub, subIdx) => (
                                         <Link
                                             key={subIdx}
-                                            to={`${categories[activeCategory].link}&subcategory=${encodeURIComponent(sub)}`}
+                                            to={`₹{categories[activeCategory].link}&subcategory=₹{encodeURIComponent(sub)}`}
                                             className="block px-4 py-2.5 rounded-lg text-gray-600 hover:bg-brand-50 hover:text-brand-600 transition-colors"
                                         >
                                             {sub}

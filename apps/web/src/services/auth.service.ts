@@ -1,6 +1,13 @@
 import { api } from './api';
 import type { LoginCredentials, RegisterCredentials, AuthResponse, UserProfile } from '../types/user.types';
 
+interface ClerkUserData {
+    clerkId: string;
+    email: string;
+    name: string;
+    avatar?: string;
+}
+
 export const authService = {
     login: async (credentials: LoginCredentials) => {
         const response = await api.post<AuthResponse>('/auth/login', credentials);
@@ -26,6 +33,12 @@ export const authService = {
         return response.data;
     },
 
+    // Sync Clerk user with backend
+    syncClerkUser: async (clerkData: ClerkUserData) => {
+        const response = await api.post<{ data: { user: UserProfile; token: string } }>('/auth/clerk/sync', clerkData);
+        return response.data.data.user;
+    },
+
     getProfile: async () => {
         const response = await api.get<{ data: UserProfile }>('/auth/profile');
         return response.data.data;
@@ -33,5 +46,6 @@ export const authService = {
 
     logout: () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('clerk_token');
     }
 };

@@ -52,7 +52,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
                     </div>
 
                     <Link
-                        to={`/notes/${note.id}`}
+                        to={`/notes/₹{note.id}`}
                         className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-brand-500/20 transition-all hover:bg-brand-600 hover:shadow-brand-500/40 active:scale-95"
                     >
                         <ShoppingCart size={16} />

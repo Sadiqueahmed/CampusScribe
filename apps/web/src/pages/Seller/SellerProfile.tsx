@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { userService } from '../../services/user.service';
 import { notesService } from '../../services/notes.service';
-import { reviewService } from '../../services/review.service';
+import { reviewService, Review } from '../../services/review.service';
 import { Note } from '../../types/note.types';
 import { StarRating } from '../../components/common/StarRating/StarRating';
 
@@ -28,15 +28,6 @@ interface SellerProfile {
     totalSales: number;
     averageRating: number;
     reviewCount: number;
-}
-
-interface Review {
-    id: string;
-    rating: number;
-    comment: string;
-    createdAt: string;
-    reviewerName: string;
-    noteTitle: string;
 }
 
 export function SellerProfile() {
@@ -153,7 +144,7 @@ export function SellerProfile() {
                         {/* Actions */}
                         <div className="flex gap-3">
                             <Link
-                                to={`/messages?userId=${seller.id}`}
+                                to={`/messages?userId=₹{seller.id}`}
                                 className="inline-flex items-center px-4 py-2 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors"
                             >
                                 <MessageSquare className="w-4 h-4 mr-2" />
@@ -187,7 +178,7 @@ export function SellerProfile() {
                     <nav className="flex space-x-8">
                         <button
                             onClick={() => setActiveTab('notes')}
-                            className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                            className={`py-4 px-1 border-b-2 font-medium text-sm ₹{
                                 activeTab === 'notes'
                                     ? 'border-brand-500 text-brand-600'
                                     : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -198,7 +189,7 @@ export function SellerProfile() {
                         </button>
                         <button
                             onClick={() => setActiveTab('reviews')}
-                            className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                            className={`py-4 px-1 border-b-2 font-medium text-sm ₹{
                                 activeTab === 'reviews'
                                     ? 'border-brand-500 text-brand-600'
                                     : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -222,7 +213,7 @@ export function SellerProfile() {
                             notes.map((note) => (
                                 <Link
                                     key={note.id}
-                                    to={`/notes/${note.id}`}
+                                    to={`/notes/₹{note.id}`}
                                     className="group bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow"
                                 >
                                     <div className="p-6">
@@ -234,7 +225,7 @@ export function SellerProfile() {
                                         </p>
                                         <div className="flex items-center justify-between mt-4">
                                             <span className="text-lg font-bold text-brand-600">
-                                                ${note.price.toFixed(2)}
+                                                ₹{note.price.toFixed(2)}
                                             </span>
                                             <span className="text-sm text-gray-500">
                                                 {note.purchaseCount || 0} sales
@@ -265,7 +256,7 @@ export function SellerProfile() {
                                             </div>
                                             <p className="text-gray-700">{review.comment}</p>
                                             <p className="text-sm text-gray-500 mt-2">
-                                                on <span className="font-medium">{review.noteTitle}</span>
+                                                by <span className="font-medium">{review.user?.name || 'Anonymous'}</span>
                                             </p>
                                         </div>
                                     </div>

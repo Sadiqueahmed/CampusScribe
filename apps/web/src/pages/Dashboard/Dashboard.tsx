@@ -97,7 +97,7 @@ export const Dashboard = () => {
                             <h1 className="text-2xl font-bold text-gray-900">{profile?.name}</h1>
                             <p className="text-gray-600">{profile?.email}</p>
                             <div className="flex items-center gap-2 mt-2">
-                                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                                <span className={`px-3 py-1 rounded-full text-sm font-medium ₹{
                                     profile?.role === 'SELLER' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                                 }`}>
                                     {profile?.role}
@@ -126,7 +126,7 @@ export const Dashboard = () => {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id as any)}
-                                    className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                                    className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors ₹{
                                         activeTab === tab.id
                                             ? 'border-brand-500 text-brand-600'
                                             : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -159,7 +159,7 @@ export const Dashboard = () => {
                                 <div className="bg-purple-50 rounded-lg p-4">
                                     <div className="flex items-center gap-3 mb-2">
                                         <DollarSign className="h-8 w-8 text-purple-600" />
-                                        <span className="text-2xl font-bold text-purple-900">${stats?.totalEarnings?.toFixed(2) || '0.00'}</span>
+                                        <span className="text-2xl font-bold text-purple-900">₹{stats?.totalEarnings?.toFixed(2) || '0.00'}</span>
                                     </div>
                                     <p className="text-purple-700">Total Earnings</p>
                                 </div>
@@ -186,9 +186,9 @@ export const Dashboard = () => {
                                                 <p className="text-sm text-gray-600">Purchased on {new Date(order.createdAt).toLocaleDateString()}</p>
                                             </div>
                                             <div className="text-right">
-                                                <p className="font-bold text-gray-900">${order.amount.toFixed(2)}</p>
+                                                <p className="font-bold text-gray-900">₹{order.amount.toFixed(2)}</p>
                                                 <Button 
-                                                    onClick={() => navigate(`/notes/${order.note.id}/download`)}
+                                                    onClick={() => navigate(`/notes/₹{order.note.id}/download`)}
                                                     variant="outline"
                                                     size="sm"
                                                 >
@@ -207,7 +207,7 @@ export const Dashboard = () => {
                                     <h3 className="text-lg font-semibold text-gray-900">Sales History</h3>
                                     <div className="text-right">
                                         <p className="text-sm text-gray-600">Available Balance</p>
-                                        <p className="text-2xl font-bold text-green-600">${stats?.availableBalance?.toFixed(2) || '0.00'}</p>
+                                        <p className="text-2xl font-bold text-green-600">₹{stats?.availableBalance?.toFixed(2) || '0.00'}</p>
                                     </div>
                                 </div>
                                 {sales.length === 0 ? (
@@ -219,7 +219,7 @@ export const Dashboard = () => {
                                                 <p className="font-medium text-gray-900">{sale.note.title}</p>
                                                 <p className="text-sm text-gray-600">Sold to {sale.buyer.name} on {new Date(sale.createdAt).toLocaleDateString()}</p>
                                             </div>
-                                            <p className="font-bold text-green-600">+${sale.amount.toFixed(2)}</p>
+                                            <p className="font-bold text-green-600">+₹{sale.amount.toFixed(2)}</p>
                                         </div>
                                     ))
                                 )}

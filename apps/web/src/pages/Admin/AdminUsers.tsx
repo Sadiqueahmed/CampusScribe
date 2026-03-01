@@ -194,7 +194,7 @@ export function AdminUsers() {
                                                     <select
                                                         value={user.role}
                                                         onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                                                        className={`px-3 py-1 rounded-full text-xs font-medium border-0 ${getRoleBadgeColor(user.role)}`}
+                                                        className={`px-3 py-1 rounded-full text-xs font-medium border-0 ₹{getRoleBadgeColor(user.role)}`}
                                                     >
                                                         <option value="BUYER">Buyer</option>
                                                         <option value="SELLER">Seller</option>
@@ -236,7 +236,7 @@ export function AdminUsers() {
                                                 <td className="px-6 py-4">
                                                     <div className="flex items-center gap-2">
                                                         <Link
-                                                            to={`/sellers/${user.id}`}
+                                                            to={`/sellers/₹{user.id}`}
                                                             className="p-2 text-gray-400 hover:text-brand-500 transition-colors"
                                                             title="View Profile"
                                                         >

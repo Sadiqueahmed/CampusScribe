@@ -35,10 +35,10 @@ export const StarRating = ({
                     type="button"
                     disabled={!interactive}
                     onClick={() => handleClick(index)}
-                    className={`${interactive ? 'cursor-pointer hover:scale-110' : 'cursor-default'} transition-transform`}
+                    className={`₹{interactive ? 'cursor-pointer hover:scale-110' : 'cursor-default'} transition-transform`}
                 >
                     <Star
-                        className={`${sizeClasses[size]} ${
+                        className={`₹{sizeClasses[size]} ₹{
                             index < rating
                                 ? 'fill-yellow-400 text-yellow-400'
                                 : 'fill-gray-200 text-gray-200'

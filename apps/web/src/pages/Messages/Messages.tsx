@@ -86,7 +86,7 @@ export const Messages = () => {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden" style={{ height: '600px' }}>
                     <div className="grid grid-cols-1 md:grid-cols-3 h-full">
                         {/* Conversations List */}
-                        <div className={`border-r border-gray-200 ${activeConversation ? 'hidden md:block' : 'block'}`}>
+                        <div className={`border-r border-gray-200 ₹{activeConversation ? 'hidden md:block' : 'block'}`}>
                             <div className="p-4 border-b border-gray-200">
                                 <h2 className="font-semibold text-gray-900">Conversations</h2>
                             </div>
@@ -98,7 +98,7 @@ export const Messages = () => {
                                         <button
                                             key={conversation.id}
                                             onClick={() => loadMessages(conversation)}
-                                            className={`w-full p-4 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 ${
+                                            className={`w-full p-4 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 ₹{
                                                 activeConversation?.id === conversation.id ? 'bg-blue-50' : ''
                                             }`}
                                         >
@@ -135,7 +135,7 @@ export const Messages = () => {
                         </div>
 
                         {/* Messages */}
-                        <div className={`md:col-span-2 flex flex-col ${activeConversation ? 'block' : 'hidden md:flex'}`}>
+                        <div className={`md:col-span-2 flex flex-col ₹{activeConversation ? 'block' : 'hidden md:flex'}`}>
                             {activeConversation ? (
                                 <>
                                     {/* Header */}
@@ -167,17 +167,17 @@ export const Messages = () => {
                                         {messages.map((message) => (
                                             <div
                                                 key={message.id}
-                                                className={`flex ${message.senderId === activeConversation.participant.id ? 'justify-start' : 'justify-end'}`}
+                                                className={`flex ₹{message.senderId === activeConversation.participant.id ? 'justify-start' : 'justify-end'}`}
                                             >
                                                 <div
-                                                    className={`max-w-[70%] rounded-lg px-4 py-2 ${
+                                                    className={`max-w-[70%] rounded-lg px-4 py-2 ₹{
                                                         message.senderId === activeConversation.participant.id
                                                             ? 'bg-gray-100 text-gray-900'
                                                             : 'bg-brand-500 text-white'
                                                     }`}
                                                 >
                                                     <p>{message.content}</p>
-                                                    <p className={`text-xs mt-1 ${
+                                                    <p className={`text-xs mt-1 ₹{
                                                         message.senderId === activeConversation.participant.id ? 'text-gray-500' : 'text-blue-100'
                                                     }`}>
                                                         {new Date(message.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

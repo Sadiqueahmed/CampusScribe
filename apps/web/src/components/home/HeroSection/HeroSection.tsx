@@ -368,7 +368,7 @@ export const HeroSection = () => {
                                     )}
                                     
                                     {/* Icon */}
-                                    <div className={`w-14 h-14 ${feature.bgColor} rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                                    <div className={`w-14 h-14 ₹{feature.bgColor} rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
                                         <span className={feature.textColor}>{feature.icon}</span>
                                     </div>
 
@@ -448,9 +448,9 @@ export const HeroSection = () => {
                                     </div>
                                     
                                     <div className="flex items-center justify-between">
-                                        <span className="text-lg font-bold text-brand-600">${note.price}</span>
+                                        <span className="text-lg font-bold text-brand-600">₹{note.price}</span>
                                         <button 
-                                            onClick={() => navigate(`/notes/${note.id}`)}
+                                            onClick={() => navigate(`/notes/₹{note.id}`)}
                                             className="p-2 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors"
                                         >
                                             <ShoppingCart size={16} />
@@ -488,7 +488,7 @@ export const HeroSection = () => {
                             >
                                 {/* Test Series Image */}
                                 <div className="relative h-40 overflow-hidden">
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${test.color}`}></div>
+                                    <div className={`absolute inset-0 bg-gradient-to-br ₹{test.color}`}></div>
                                     <img 
                                         src={test.image} 
                                         alt={test.title}
@@ -526,11 +526,11 @@ export const HeroSection = () => {
                                     
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
-                                            <span className="text-lg font-bold text-brand-600">${test.price}</span>
-                                            <span className="text-sm text-gray-400 line-through">${test.originalPrice}</span>
+                                            <span className="text-lg font-bold text-brand-600">₹{test.price}</span>
+                                            <span className="text-sm text-gray-400 line-through">₹{test.originalPrice}</span>
                                         </div>
                                         <button 
-                                            onClick={() => navigate(`/notes/${test.id}`)}
+                                            onClick={() => navigate(`/notes/₹{test.id}`)}
                                             className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
                                         >
                                             <ShoppingCart size={16} />
@@ -608,7 +608,7 @@ export const HeroSection = () => {
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
                                 {sellerBenefits.map((benefit, index) => (
                                     <div key={index} className="flex flex-col items-center justify-center p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                                        <div className={`w-12 h-12 rounded-xl ${benefit.color} flex items-center justify-center text-white mb-3`}>
+                                        <div className={`w-12 h-12 rounded-xl ₹{benefit.color} flex items-center justify-center text-white mb-3`}>
                                             {benefit.icon}
                                         </div>
                                         <div className="text-center">
@@ -642,7 +642,7 @@ export const HeroSection = () => {
                                         to={product.link}
                                         className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
                                     >
-                                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${product.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+                                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ₹{product.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
                                             {product.icon}
                                         </div>
                                         <h4 className="font-bold text-gray-900 mb-1">{product.title}</h4>
@@ -670,7 +670,7 @@ export const HeroSection = () => {
                                     to={streamItem.link}
                                     className="group flex items-center gap-4 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                                 >
-                                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${streamItem.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ₹{streamItem.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
                                         {streamItem.icon}
                                     </div>
                                     <div>

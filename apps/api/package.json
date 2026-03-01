@@ -11,6 +11,7 @@
         "@aws-sdk/client-s3": "^3.998.0",
         "@aws-sdk/s3-request-presigner": "^3.998.0",
         "@campus-scribe/database": "*",
+        "@clerk/clerk-sdk-node": "^4.13.23",
         "@types/nodemailer": "^7.0.11",
         "@types/uuid": "^10.0.0",
         "bcrypt": "^5.1.1",

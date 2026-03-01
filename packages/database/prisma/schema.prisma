@@ -10,6 +10,7 @@ datasource db {
 model User {
   id                String        @id @default(uuid())
   email             String        @unique
+  clerkId           String?        @unique // Clerk user ID
   passwordHash      String?
   name              String
   role              Role          @default(BUYER)
@@ -47,6 +48,7 @@ enum Role {
 enum AuthProvider {
   LOCAL
   GOOGLE
+  CLERK
 }
 
 model Note {
@@ -118,8 +120,8 @@ model Review {
   userId    String
   noteId    String
   isVisible Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   user      User     @relation("UserReviews", fields: [userId], references: [id])
   note      Note     @relation(fields: [noteId], references: [id])

@@ -93,6 +93,58 @@ export class AuthService {
         return this.sanitizeUser(user);
     }
 
+    // Sync Clerk user to database
+    static async syncClerkUser(data: { clerkId: string; email: string; name: string; avatar?: string }) {
+        const { clerkId, email, name, avatar } = data;
+
+        // Check if user already exists by clerkId
+        let user = await prisma.user.findUnique({ where: { clerkId } });
+
+        if (!user) {
+            // Check if user exists by email
+            user = await prisma.user.findUnique({ where: { email } });
+            
+            if (user) {
+                // Link existing user to Clerk
+                user = await prisma.user.update({
+                    where: { id: user.id },
+                    data: {
+                        clerkId,
+                        avatar: avatar || user.avatar,
+                        authProvider: 'CLERK'
+                    }
+                });
+            } else {
+                // Create new user
+                user = await prisma.user.create({
+                    data: {
+                        clerkId,
+                        email,
+                        name: name || 'User',
+                        role: 'BUYER',
+                        avatar,
+                        authProvider: 'CLERK'
+                    }
+                });
+            }
+        } else {
+            // Update existing Clerk user
+            user = await prisma.user.update({
+                where: { id: user.id },
+                data: {
+                    email: email || user.email,
+                    name: name || user.name,
+                    avatar: avatar || user.avatar
+                }
+            });
+        }
+
+        // Generate JWT token for API access
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'secret', { expiresIn: '7d' });
+
+        return { user: this.sanitizeUser(user), token };
+    }
+
     private static sanitizeUser(user: User) {
         const { passwordHash, ...safeUser } = user;
         return safeUser;

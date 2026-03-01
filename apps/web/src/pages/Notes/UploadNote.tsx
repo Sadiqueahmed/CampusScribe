@@ -93,7 +93,7 @@ export const UploadNote = () => {
             }
 
             setSuccess('Note uploaded successfully!');
-            setTimeout(() => navigate(`/notes/${note.id}`), 1500);
+            setTimeout(() => navigate(`/notes/₹{note.id}`), 1500);
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to upload note');
         } finally {
@@ -162,7 +162,7 @@ export const UploadNote = () => {
                                     <div className="w-full bg-gray-200 rounded-full h-2">
                                         <div 
                                             className="bg-brand-500 h-2 rounded-full transition-all"
-                                            style={{ width: `${uploadProgress}%` }}
+                                            style={{ width: `₹{uploadProgress}%` }}
                                         ></div>
                                     </div>
                                 </div>
@@ -207,7 +207,7 @@ export const UploadNote = () => {
                         {/* Price */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Price ($)
+                                Price (₹)
                             </label>
                             <div className="relative">
                                 <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />

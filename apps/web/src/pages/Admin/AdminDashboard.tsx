@@ -77,7 +77,7 @@ export function AdminDashboard() {
                         <button
                             key={range.key}
                             onClick={() => setTimeRange(range.key as any)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                            className={`px-4 py-2 rounded-lg text-sm font-medium ₹{
                                 timeRange === range.key
                                     ? 'bg-brand-500 text-white'
                                     : 'bg-white text-gray-700 hover:bg-gray-50'
@@ -116,7 +116,7 @@ export function AdminDashboard() {
                     />
                     <StatCard
                         title="Revenue"
-                        value={`$${(stats?.totalRevenue || 0).toLocaleString()}`}
+                        value={`₹₹{(stats?.totalRevenue || 0).toLocaleString()}`}
                         icon={<DollarSign className="w-6 h-6" />}
                         trend={8.5}
                         trendLabel="vs last period"
@@ -237,7 +237,7 @@ export function AdminDashboard() {
                                             <p className="text-xs text-gray-500">by {note.seller?.name}</p>
                                         </div>
                                     </div>
-                                    <span className={`px-2 py-1 text-xs rounded-full ${
+                                    <span className={`px-2 py-1 text-xs rounded-full ₹{
                                         note.isApproved 
                                             ? 'bg-green-100 text-green-700' 
                                             : 'bg-yellow-100 text-yellow-700'
@@ -267,10 +267,10 @@ function StatCard({ title, value, icon, trend, trendLabel, color }: any) {
     return (
         <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-lg ${colorClasses[color]}`}>
+                <div className={`p-3 rounded-lg ₹{colorClasses[color]}`}>
                     {icon}
                 </div>
-                <div className={`flex items-center text-sm ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                <div className={`flex items-center text-sm ₹{isPositive ? 'text-green-600' : 'text-red-600'}`}>
                     {isPositive ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
                     {Math.abs(trend)}%
                 </div>
@@ -292,7 +292,7 @@ function PendingActionCard({ icon, title, count, description, link, color }: any
     return (
         <Link 
             to={link}
-            className={`flex items-center p-4 rounded-lg border ${colorClasses[color]} hover:shadow-md transition-shadow`}
+            className={`flex items-center p-4 rounded-lg border ₹{colorClasses[color]} hover:shadow-md transition-shadow`}
         >
             <div className="p-2 bg-white rounded-lg shadow-sm mr-4">
                 {icon}

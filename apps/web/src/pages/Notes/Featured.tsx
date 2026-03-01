@@ -140,7 +140,7 @@ export function Featured() {
 
                                     {/* Title */}
                                     <Link 
-                                        to={`/notes/${note.id}`}
+                                        to={`/notes/₹{note.id}`}
                                         className="block text-lg font-semibold text-gray-900 hover:text-brand-600 transition-colors mb-2"
                                     >
                                         {note.title}
@@ -180,7 +180,7 @@ export function Featured() {
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <span className="text-2xl font-bold text-brand-600">
-                                                ${note.price.toFixed(2)}
+                                                ₹{note.price.toFixed(2)}
                                             </span>
                                             <p className="text-xs text-gray-500">
                                                 {note.purchaseCount || 0} students bought this

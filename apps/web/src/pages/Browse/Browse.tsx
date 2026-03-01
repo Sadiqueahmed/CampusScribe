@@ -94,7 +94,7 @@ export const Browse = () => {
                     <div className="flex-1">
                         <div className="mb-8">
                             <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                                {search ? `Search results for "${search}"` : 'Browse all notes'}
+                                {search ? `Search results for "₹{search}"` : 'Browse all notes'}
                             </h1>
                             <p className="mt-2 text-lg text-gray-500">
                                 Find the perfect study material to ace your next exam.

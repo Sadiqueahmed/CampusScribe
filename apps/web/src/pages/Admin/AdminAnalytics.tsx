@@ -54,13 +54,13 @@ export function AdminAnalytics() {
         const csvContent = 'data:text/csv;charset=utf-8,' + 
             'Date,Revenue,Sales,New Users\n' +
             (analytics?.dailyRevenue || []).map(row => 
-                `${row.date},${row.amount},0,0`
+                `₹{row.date},₹{row.amount},0,0`
             ).join('\n');
         
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
-        link.setAttribute('download', `analytics_${timeRange}.csv`);
+        link.setAttribute('download', `analytics_₹{timeRange}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -112,7 +112,7 @@ export function AdminAnalytics() {
                         <button
                             key={range.key}
                             onClick={() => setTimeRange(range.key as any)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                            className={`px-4 py-2 rounded-lg text-sm font-medium ₹{
                                 timeRange === range.key
                                     ? 'bg-brand-500 text-white'
                                     : 'bg-white text-gray-700 hover:bg-gray-50'
@@ -127,7 +127,7 @@ export function AdminAnalytics() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <MetricCard
                         title="Total Revenue"
-                        value={`$${(analytics?.totalRevenue || 0).toLocaleString()}`}
+                        value={`₹₹{(analytics?.totalRevenue || 0).toLocaleString()}`}
                         trend={analytics?.revenueGrowth || 0}
                         icon={<DollarSign className="w-6 h-6" />}
                         color="green"
@@ -168,8 +168,8 @@ export function AdminAnalytics() {
                                     <div key={index} className="flex-1 flex flex-col items-center">
                                         <div 
                                             className="w-full bg-brand-500 rounded-t transition-all hover:bg-brand-600"
-                                            style={{ height: `${height}%`, minHeight: '4px' }}
-                                            title={`$${day.amount.toFixed(2)}`}
+                                            style={{ height: `₹{height}%`, minHeight: '4px' }}
+                                            title={`₹₹{day.amount.toFixed(2)}`}
                                         ></div>
                                         <span className="text-xs text-gray-500 mt-2 transform -rotate-45 origin-top-left">
                                             {new Date(day.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
@@ -196,7 +196,7 @@ export function AdminAnalytics() {
                                         <div className="w-full bg-gray-100 rounded-full h-2">
                                             <div 
                                                 className="bg-brand-500 h-2 rounded-full transition-all"
-                                                style={{ width: `${percentage}%` }}
+                                                style={{ width: `₹{percentage}%` }}
                                             ></div>
                                         </div>
                                     </div>
@@ -225,7 +225,7 @@ export function AdminAnalytics() {
                                     </div>
                                     <div className="text-right">
                                         <p className="text-sm font-medium text-gray-900">{note.purchaseCount} sales</p>
-                                        <p className="text-xs text-gray-500">${note.revenue?.toFixed(2)}</p>
+                                        <p className="text-xs text-gray-500">₹{note.revenue?.toFixed(2)}</p>
                                     </div>
                                 </div>
                             ))}
@@ -254,7 +254,7 @@ export function AdminAnalytics() {
                                     </div>
                                     <div className="text-right">
                                         <p className="text-sm font-medium text-gray-900\">{seller.totalSales} sales</p>
-                                        <p className="text-xs text-gray-500\">${seller.totalRevenue?.toFixed(2)} earned</p>
+                                        <p className="text-xs text-gray-500\">₹{seller.totalRevenue?.toFixed(2)} earned</p>
                                     </div>
                                 </div>
                             ))}
@@ -279,10 +279,10 @@ function MetricCard({ title, value, trend, icon, color }: any) {
     return (
         <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-lg ${colorClasses[color]}`}>
+                <div className={`p-3 rounded-lg ₹{colorClasses[color]}`}>
                     {icon}
                 </div>
-                <div className={`flex items-center text-sm ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                <div className={`flex items-center text-sm ₹{isPositive ? 'text-green-600' : 'text-red-600'}`}>
                     {isPositive ? <ArrowUpRight className="w-4 h-4 mr-1" /> : <ArrowDownRight className="w-4 h-4 mr-1" />}
                     {Math.abs(trend)}%
                 </div>

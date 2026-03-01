@@ -70,7 +70,7 @@ export const Checkout = () => {
                                         <p className="font-medium text-gray-900">{item.title}</p>
                                         <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                                     </div>
-                                    <p className="font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)}</p>
+                                    <p className="font-medium text-gray-900">₹{(item.price * item.quantity).toFixed(2)}</p>
                                 </div>
                             ))}
                         </div>
@@ -79,17 +79,17 @@ export const Checkout = () => {
                     <div className="p-6 bg-gray-50">
                         <div className="space-y-2 mb-4">
                             <div className="flex justify-between text-gray-600">
-                                <span>Subtotal</span>
-                                <span>${cart.total.toFixed(2)}</span>
+                                    <span>Subtotal</span>
+                                <span>₹{cart.total.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
-                                <span>Platform Fee (15%)</span>
-                                <span>${(cart.total * 0.15).toFixed(2)}</span>
+                                    <span>Platform Fee (15%)</span>
+                                <span>₹{(cart.total * 0.15).toFixed(2)}</span>
                             </div>
                         </div>
                         <div className="border-t pt-4 flex justify-between text-xl font-bold text-gray-900">
-                            <span>Total</span>
-                            <span>${(cart.total * 1.15).toFixed(2)}</span>
+                                    <span>Total</span>
+                            <span>₹{(cart.total * 1.15).toFixed(2)}</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ export const Checkout = () => {
                     variant="primary"
                     className="w-full py-4 text-lg"
                 >
-                    {isProcessing ? 'Processing...' : `Pay $${(cart.total * 1.15).toFixed(2)}`}
+                    {isProcessing ? 'Processing...' : `Pay ₹₹{(cart.total * 1.15).toFixed(2)}`}
                 </Button>
 
                 <button

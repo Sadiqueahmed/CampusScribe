@@ -64,7 +64,7 @@ export const NoteDetails = () => {
                         <li><span className="mx-2">/</span></li>
                         {note.category && (
                             <>
-                                <li><Link to={`/browse?category=${note.category.course}`} className="hover:text-gray-900">{note.category.course}</Link></li>
+                                <li><Link to={`/browse?category=₹{note.category.course}`} className="hover:text-gray-900">{note.category.course}</Link></li>
                                 <li><span className="mx-2">/</span></li>
                             </>
                         )}

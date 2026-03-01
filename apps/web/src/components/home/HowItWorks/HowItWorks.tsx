@@ -83,7 +83,7 @@ export const HowItWorks = () => {
                             {/* Card */}
                             <div className="relative bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 h-full">
                                 {/* Icon */}
-                                <div className={`w-16 h-16 rounded-2xl ${step.color} flex items-center justify-center mb-6`}>
+                                <div className={`w-16 h-16 rounded-2xl ₹{step.color} flex items-center justify-center mb-6`}>
                                     {step.icon}
                                 </div>
 

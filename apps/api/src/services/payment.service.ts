@@ -42,7 +42,7 @@ export class PaymentService {
         // Create Stripe PaymentIntent
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(totalAmount * 100), // Convert to cents
-            currency: 'usd',
+            currency: 'inr',
             metadata: {
                 userId,
                 purchaseIds: purchases.map(p => p.id).join(',')
@@ -205,7 +205,7 @@ export class PaymentService {
         }
 
         if (amount < 10) {
-            throw new Error('Minimum payout amount is $10');
+            throw new Error('Minimum payout amount is ₹500');
         }
 
         // Create payout record

@@ -204,9 +204,9 @@ export function Conversation() {
                             return (
                                 <div 
                                     key={message.id}
-                                    className={`flex ${own ? 'justify-end' : 'justify-start'}`}
+                                    className={`flex ₹{own ? 'justify-end' : 'justify-start'}`}
                                 >
-                                    <div className={`flex max-w-[70%] ${own ? 'flex-row-reverse' : 'flex-row'}`}>
+                                    <div className={`flex max-w-[70%] ₹{own ? 'flex-row-reverse' : 'flex-row'}`}>
                                         {/* Avatar */}
                                         {showAvatar && !own && (
                                             <div className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0 mr-2">
@@ -218,13 +218,13 @@ export function Conversation() {
                                         {!showAvatar && !own && <div className="w-8 mr-2"></div>}
                                         
                                         {/* Message Bubble */}
-                                        <div className={`relative px-4 py-2 rounded-2xl ${
+                                        <div className={`relative px-4 py-2 rounded-2xl ₹{
                                             own 
                                                 ? 'bg-brand-500 text-white rounded-br-none' 
                                                 : 'bg-gray-100 text-gray-900 rounded-bl-none'
                                         }`}>
                                             <p className="text-sm">{message.content}</p>
-                                            <div className={`flex items-center mt-1 text-xs ${
+                                            <div className={`flex items-center mt-1 text-xs ₹{
                                                 own ? 'text-brand-100' : 'text-gray-500'
                                             }`}>
                                                 <span>{formatTime(message.createdAt)}</span>
