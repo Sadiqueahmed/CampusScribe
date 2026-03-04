@@ -13,6 +13,7 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { userService } from '../../services/user.service';
 import { notesService } from '../../services/notes.service';
+import { formatINR } from '../../utils/currency';
 
 interface Order {
     id: string;
@@ -146,10 +147,10 @@ export function OrderHistory() {
                             <div>
                                 <p className="text-sm text-gray-600">Total Spent</p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    ₹{orders
+                                    {formatINR(orders
                                         .filter(o => o.status === 'COMPLETED')
                                         .reduce((sum, o) => sum + o.notePrice, 0)
-                                        .toFixed(2)}
+                                    )}
                                 </p>
                             </div>
                         </div>
@@ -168,7 +169,7 @@ export function OrderHistory() {
                                 <button
                                     key={tab.key}
                                     onClick={() => setFilter(tab.key as any)}
-                                    className={`py-4 px-1 border-b-2 font-medium text-sm ₹{
+                                    className={`py-4 px-1 border-b-2 font-medium text-sm ${
                                         filter === tab.key
                                             ? 'border-brand-500 text-brand-600'
                                             : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -190,7 +191,7 @@ export function OrderHistory() {
                             <p className="text-gray-500 mb-6">
                                 {filter === 'all' 
                                     ? "You haven't purchased any notes yet." 
-                                    : `No ₹{filter} orders found.`}
+                                    : `No ${filter} orders found.`}
                             </p>
                             <Link
                                 to="/browse"
@@ -221,7 +222,7 @@ export function OrderHistory() {
                                                         <span className="ml-2">{getStatusText(order.status)}</span>
                                                     </span>
                                                     <span className="text-sm font-medium text-gray-900">
-                                                        ₹{order.notePrice.toFixed(2)}
+                                                        {formatINR(order.notePrice)}
                                                     </span>
                                                 </div>
                                             </div>
@@ -237,7 +238,7 @@ export function OrderHistory() {
                                                         Download
                                                     </button>
                                                     <Link
-                                                        to={`/messages?userId=₹{order.sellerId}`}
+                                                        to={`/messages?userId=${order.sellerId}`}
                                                         className="inline-flex items-center px-3 py-2 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
                                                     >
                                                         <MessageSquare className="w-4 h-4 mr-2" />
@@ -246,7 +247,7 @@ export function OrderHistory() {
                                                 </>
                                             )}
                                             <Link
-                                                to={`/notes/₹{order.noteId}`}
+                                                to={`/notes/${order.noteId}`}
                                                 className="text-gray-400 hover:text-gray-600"
                                             >
                                                 <ChevronRight className="w-5 h-5" />

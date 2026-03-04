@@ -4,6 +4,7 @@ import { CreditCard, Lock, CheckCircle } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { paymentService } from '../../services/payment.service';
 import { Button } from '../../components/common/Button/Button';
+import { formatINR } from '../../utils/currency';
 
 export const Checkout = () => {
     const { cart, refreshCart } = useCart();
@@ -70,7 +71,7 @@ export const Checkout = () => {
                                         <p className="font-medium text-gray-900">{item.title}</p>
                                         <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                                     </div>
-                                    <p className="font-medium text-gray-900">₹{(item.price * item.quantity).toFixed(2)}</p>
+                                    <p className="font-medium text-gray-900">{formatINR(item.price * item.quantity)}</p>
                                 </div>
                             ))}
                         </div>
@@ -80,16 +81,16 @@ export const Checkout = () => {
                         <div className="space-y-2 mb-4">
                             <div className="flex justify-between text-gray-600">
                                     <span>Subtotal</span>
-                                <span>₹{cart.total.toFixed(2)}</span>
+                                <span>{formatINR(cart.total)}</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
                                     <span>Platform Fee (15%)</span>
-                                <span>₹{(cart.total * 0.15).toFixed(2)}</span>
+                                <span>{formatINR(cart.total * 0.15)}</span>
                             </div>
                         </div>
                         <div className="border-t pt-4 flex justify-between text-xl font-bold text-gray-900">
                                     <span>Total</span>
-                            <span>₹{(cart.total * 1.15).toFixed(2)}</span>
+                            <span>{formatINR(cart.total * 1.15)}</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +115,7 @@ export const Checkout = () => {
                     variant="primary"
                     className="w-full py-4 text-lg"
                 >
-                    {isProcessing ? 'Processing...' : `Pay ₹₹{(cart.total * 1.15).toFixed(2)}`}
+                    {isProcessing ? 'Processing...' : `Pay ${formatINR(cart.total * 1.15)}`}
                 </Button>
 
                 <button

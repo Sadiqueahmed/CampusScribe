@@ -79,13 +79,6 @@ export const Navbar = ({ onMenuClick }: NavbarProps) => {
                 
                 {/* Left Section: Menu & Logo */}
                 <div className="flex items-center gap-3">
-                    {/* Menu Button - Opens Sidebar */}
-                    <button 
-                        onClick={onMenuClick}
-                        className="p-2 -ml-2 text-navy-800 hover:bg-gray-100 rounded-lg"
-                    >
-                        <Menu size={24} />
-                    </button>
 
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2">

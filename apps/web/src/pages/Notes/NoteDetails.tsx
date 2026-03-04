@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { notesService } from '../../services/notes.service';
 import { Note } from '../../types/note.types';
 import { BookOpen, MapPin, Tag, ShoppingCart, ShieldCheck, Star, Users, CheckCircle, ArrowLeft } from 'lucide-react';
+import { formatINR } from '../../utils/currency';
 
 export const NoteDetails = () => {
     const { id } = useParams<{ id: string }>();
@@ -50,8 +51,6 @@ export const NoteDetails = () => {
         );
     }
 
-    const maxPrice = (note.price * 1.25).toFixed(2);
-
     return (
         <div className="bg-gray-50 min-h-[calc(100vh-4rem)] py-8 px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
@@ -64,7 +63,7 @@ export const NoteDetails = () => {
                         <li><span className="mx-2">/</span></li>
                         {note.category && (
                             <>
-                                <li><Link to={`/browse?category=₹{note.category.course}`} className="hover:text-gray-900">{note.category.course}</Link></li>
+                                <li><Link to={`/browse?category=${note.category.course}`} className="hover:text-gray-900">{note.category.course}</Link></li>
                                 <li><span className="mx-2">/</span></li>
                             </>
                         )}
@@ -147,8 +146,8 @@ export const NoteDetails = () => {
                             {/* Pricing */}
                             <div className="mb-6">
                                 <div className="flex items-end gap-3 mb-1">
-                                    <span className="text-4xl font-black text-gray-900">₹{note.price.toFixed(2)}</span>
-                                    <span className="text-lg text-gray-400 line-through mb-1">₹{maxPrice}</span>
+                                    <span className="text-4xl font-black text-gray-900">{formatINR(note.price)}</span>
+                                    <span className="text-lg text-gray-400 line-through mb-1">{formatINR(note.price * 1.25)}</span>
                                     <span className="text-sm font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded mb-1.5 ml-auto">
                                         20% OFF
                                     </span>

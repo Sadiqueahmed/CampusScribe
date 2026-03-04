@@ -14,6 +14,7 @@ import {
     AlertCircle
 } from 'lucide-react';
 import { adminService } from '../../services/admin.service';
+import { formatINR } from '../../utils/currency';
 
 interface Note {
     id: string;
@@ -233,7 +234,7 @@ export function AdminNotes() {
                                                         </div>
                                                         <div>
                                                             <Link 
-                                                                to={`/notes/₹{note.id}`}
+                                                                to={`/notes/${note.id}`}
                                                                 className="text-sm font-medium text-gray-900 hover:text-brand-600 transition-colors line-clamp-1"
                                                             >
                                                                 {note.title}
@@ -246,15 +247,15 @@ export function AdminNotes() {
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <div className="text-sm text-gray-900">{note.seller?.name}</div>
-                                                    <div className="text-sm text-gray-500\">{note.seller?.email}</div>
+                                                    <div className="text-sm text-gray-500">{note.seller?.email}</div>
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <div className="text-sm text-gray-900">{note.category?.course}</div>
-                                                    <div className="text-sm text-gray-500\">{note.category?.subject}</div>
+                                                    <div className="text-sm text-gray-500">{note.category?.subject}</div>
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <span className="text-sm font-medium text-gray-900">
-                                                        ₹{note.price.toFixed(2)}
+                                                        {formatINR(note.price)}
                                                     </span>
                                                 </td>
                                                 <td className="px-6 py-4">
@@ -311,7 +312,7 @@ export function AdminNotes() {
                                                         )}
                                                         <button
                                                             onClick={() => handleToggleFeature(note.id, note.isFeatured)}
-                                                            className={`p-2 rounded-lg transition-colors ₹{
+                                                            className={`p-2 rounded-lg transition-colors ${
                                                                 note.isFeatured 
                                                                     ? 'text-brand-600 bg-brand-50' 
                                                                     : 'text-gray-400 hover:text-brand-500 hover:bg-brand-50'
@@ -321,7 +322,7 @@ export function AdminNotes() {
                                                             <Star className="w-4 h-4" />
                                                         </button>
                                                         <Link
-                                                            to={`/notes/₹{note.id}`}
+                                                            to={`/notes/${note.id}`}
                                                             className="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition-colors"
                                                             title="View"
                                                         >

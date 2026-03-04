@@ -9,6 +9,7 @@ import reviewRoutes from './review.routes';
 import messageRoutes from './message.routes';
 import paymentRoutes from './payment.routes';
 import adminRoutes from './admin.routes';
+import coursesRoutes from './courses.routes';
 
 const router = Router();
 
@@ -22,5 +23,6 @@ router.use('/reviews', reviewRoutes);
 router.use('/conversations', messageRoutes);
 router.use('/checkout', paymentRoutes);
 router.use('/admin', adminRoutes);
+router.use('/courses', coursesRoutes);
 
 export default router;

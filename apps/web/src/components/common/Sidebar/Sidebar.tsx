@@ -39,7 +39,8 @@ const mainCategories = [
     { name: 'Mentorship', icon: Users, path: '/browse?category=mentorship' },
     { name: 'Lectures', icon: Layers, path: '/browse?category=lectures' },
     { name: 'All Products', icon: Layers, path: '/browse' },
-    { name: 'Certificate Course', icon: Award, path: '/browse?category=certificate' },
+    { name: 'Certificate Course', icon: Award, path: '/certificate-courses' },
+    { name: 'Study Material', icon: GraduationCap, path: '/study-material' },
 ];
 
 // Stream categories with sub-items

@@ -96,7 +96,7 @@ export function EditNote() {
 
             setSuccess('Note updated successfully!');
             setTimeout(() => {
-                navigate(`/notes/₹{id}`);
+                navigate(`/notes/${id}`);
             }, 1500);
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to update note');
@@ -165,7 +165,7 @@ export function EditNote() {
                 <div className="mb-8 flex items-center justify-between">
                     <div className="flex items-center">
                         <Link 
-                            to={`/notes/₹{id}`}
+                            to={`/notes/${id}`}
                             className="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors"
                         >
                             <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -235,7 +235,7 @@ export function EditNote() {
                             Price (₹) *
                         </label>
                         <div className="relative">
-                            <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                             <input
                                 type="number"
                                 step="0.01"
@@ -332,7 +332,7 @@ export function EditNote() {
                     {/* Actions */}
                     <div className="flex items-center justify-between pt-6 border-t border-gray-200">
                         <Link
-                            to={`/notes/₹{id}`}
+                            to={`/notes/${id}`}
                             className="text-gray-600 hover:text-gray-800 font-medium"
                         >
                             Cancel

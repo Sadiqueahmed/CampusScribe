@@ -306,3 +306,29 @@ model BlogPost {
   
   author      User      @relation(fields: [authorId], references: [id])
 }
+
+// Course Models
+model Course {
+  id               String        @id @default(uuid())
+  title            String
+  slug             String        @unique
+  description      String
+  price            Float?
+  discountedPrice  Float?
+  thumbnailUrl     String?
+  videoPlaylistUrl String?
+  duration         Int? // Duration in minutes
+  isPublished      Boolean       @default(false)
+  viewCount        Int           @default(0)
+  purchaseCount    Int           @default(0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  instructor       String?
+  category         String?
+  provider         String?
+  courseType       String?
+  averageRating    Float?
+  reviewCount      Int?
+}
+

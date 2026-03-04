@@ -7,6 +7,9 @@
         "apps/*",
         "packages/*"
     ],
+    "prisma": {
+        "seed": "ts-node packages/database/prisma/seed.ts"
+    },
     "scripts": {
         "build": "turbo run build",
         "dev": "turbo run dev",
@@ -14,8 +17,11 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\""
     },
     "devDependencies": {
-        "turbo": "^2.0.0",
+        "@types/node": "^25.3.3",
+        "dotenv-cli": "^7.4.1",
         "prettier": "^3.0.0",
-        "dotenv-cli": "^7.4.1"
+        "ts-node": "^10.9.2",
+        "turbo": "^2.0.0",
+        "typescript": "^5.9.3"
     }
 }
