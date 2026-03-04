@@ -1,5 +1,5 @@
 {
-    "buildCommand": "cd apps/web && npm install && npm run build",
-    "installCommand": "cd apps/web && npm install",
-    "outputDirectory": "dist"
+    "buildCommand": "npm run build --workspace=@campus-scribe/web",
+    "installCommand": "npm install",
+    "outputDirectory": "apps/web/dist"
 }
