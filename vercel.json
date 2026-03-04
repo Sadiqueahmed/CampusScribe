@@ -1,14 +1,25 @@
 {
-    "buildCommand": "turbo run build",
-    "outputDirectory": "apps/web/dist",
+    "version": 2,
+    "builds": [
+        {
+            "src": "apps/web/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "dist"
+            }
+        }
+    ],
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "/api/index.ts"
+            "destination": "https://api.example.com/$1"
         },
         {
             "source": "/(.*)",
-            "destination": "/index.html"
+            "destination": "/apps/web/$1"
         }
-    ]
+    ],
+    "env": {
+        "VITE_API_URL": "@api-url"
+    }
 }
