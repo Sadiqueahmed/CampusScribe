@@ -4,6 +4,7 @@ export interface Review {
     id: string;
     rating: number;
     comment: string;
+    noteTitle?: string;
     user: {
         id: string;
         name: string;

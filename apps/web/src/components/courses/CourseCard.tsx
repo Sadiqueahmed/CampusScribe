@@ -1,4 +1,4 @@
-import { ExternalLink, Users, BarChart, GraduationCap } from 'lucide-react';
+import { ExternalLink, Users } from 'lucide-react';
 import { Course } from '../../types/course.types';
 import { StarRating } from '../common/StarRating/StarRating';
 

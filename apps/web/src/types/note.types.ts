@@ -3,7 +3,7 @@ export interface Note {
     title: string;
     description: string;
     price: number;
-    fileUrl: string;
+    fileUrl:string;
     previewUrl?: string;
     fileType?: string;
     fileSize?: number;
@@ -15,6 +15,7 @@ export interface Note {
     viewCount?: number;
     purchaseCount?: number;
     averageRating?: number;
+    reviewCount?: number;
     createdAt: string;
     updatedAt: string;
     seller?: { id: string; name: string; university?: string; avatar?: string };

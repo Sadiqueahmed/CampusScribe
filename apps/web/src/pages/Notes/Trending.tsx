@@ -11,7 +11,7 @@ import {
 import { notesService } from '../../services/notes.service';
 import { Note } from '../../types/note.types';
 import { useCart } from '../../context/CartContext';
-import { formatINR } from '../../utils/currency';
+import { formatINR, toNumber } from '../../utils/currency';
 
 export function Trending() {
     const [notes, setNotes] = useState<Note[]>([]);
@@ -112,7 +112,7 @@ export function Trending() {
                             <div>
                                 <p className="text-gray-600 text-sm">Total Sales</p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    {notes.reduce((sum, n) => sum + (n.purchaseCount || 0), 0)}
+                                    {notes.reduce((sum, n) => sum + toNumber(n.purchaseCount), 0)}
                                 </p>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ export function Trending() {
                             <div>
                                 <p className="text-gray-600 text-sm">Total Views</p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    {notes.reduce((sum, n) => sum + (n.viewCount || 0), 0).toLocaleString()}
+                                    {notes.reduce((sum, n) => sum + toNumber(n.viewCount), 0).toLocaleString()}
                                 </p>
                             </div>
                         </div>

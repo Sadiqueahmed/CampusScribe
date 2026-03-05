@@ -7,16 +7,20 @@ import {
     Crown,
     TrendingUp
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { notesService } from '../../services/notes.service';
 import { Note } from '../../types/note.types';
 import { useCart } from '../../context/CartContext';
 import { StarRating } from '../../components/common/StarRating/StarRating';
 import { formatINR } from '../../utils/currency';
+import { CustomModal } from '../../components/common/CustomModal/CustomModal';
 
 export function Featured() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [loading, setLoading] = useState(true);
     const { addToCart } = useCart();
+    const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetchFeaturedNotes();
@@ -29,6 +33,7 @@ export function Featured() {
             setNotes(featuredNotes || []);
         } catch (error) {
             console.error('Failed to fetch featured notes:', error);
+            toast.error('Failed to load featured notes.');
         } finally {
             setLoading(false);
         }
@@ -37,9 +42,21 @@ export function Featured() {
     const handleAddToCart = async (noteId: string) => {
         try {
             await addToCart(noteId);
+            toast.success('Note added to cart!');
         } catch (error) {
             console.error('Failed to add to cart:', error);
+            toast.error('Failed to add note to cart.');
         }
+    };
+
+    const openModal = (note: Note) => {
+        setSelectedNote(note);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setSelectedNote(null);
+        setIsModalOpen(false);
     };
 
     if (loading) {
@@ -140,12 +157,12 @@ export function Featured() {
                                     </div>
 
                                     {/* Title */}
-                                    <Link 
-                                        to={`/notes/${note.id}`}
-                                        className="block text-lg font-semibold text-gray-900 hover:text-brand-600 transition-colors mb-2"
+                                    <button 
+                                        onClick={() => openModal(note)}
+                                        className="block text-lg font-semibold text-gray-900 hover:text-brand-600 transition-colors mb-2 text-left"
                                     >
                                         {note.title}
-                                    </Link>
+                                    </button>
 
                                     {/* Description */}
                                     <p className="text-sm text-gray-600 line-clamp-2 mb-4">
@@ -154,9 +171,9 @@ export function Featured() {
 
                                     {/* Rating */}
                                     <div className="flex items-center gap-2 mb-4">
-                                        <StarRating rating={(note as any).averageRating || 0} size="sm" />
+                                        <StarRating rating={note.averageRating || 0} size="sm" />
                                         <span className="text-sm text-gray-500">
-                                            ({(note as any).reviewCount || 0} reviews)
+                                            ({note.reviewCount || 0} reviews)
                                         </span>
                                     </div>
 
@@ -217,6 +234,23 @@ export function Featured() {
                     </Link>
                 </div>
             </div>
+            {selectedNote && (
+                <CustomModal
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                    title={selectedNote.title}
+                >
+                    <div>
+                        <p className="text-sm text-gray-500 mb-4">{selectedNote.description}</p>
+                        <div className="flex items-center justify-between">
+                            <div className="text-lg font-bold text-brand-600">{formatINR(selectedNote.price)}</div>
+                            <Link to={`/notes/${selectedNote.id}`} className="px-4 py-2 bg-brand-500 text-white rounded-lg hover:bg-brand-600 transition-colors">
+                                View Details
+                            </Link>
+                        </div>
+                    </div>
+                </CustomModal>
+            )}
         </div>
     );
 }

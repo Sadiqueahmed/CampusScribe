@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { FileText, BookOpen, Scroll, Video, Users, GraduationCap, TrendingUp, ArrowRight, ShieldCheck, TrendingUp as TrendingUpIcon, Users as UsersIcon, Clock, Star, Heart, ShoppingCart, CheckCircle, PlayCircle, DollarSign, Wallet, BarChart3, Plus, Upload, CreditCard, FileQuestion } from 'lucide-react';
+import { FileText, BookOpen, Scroll, Video, Users, GraduationCap, TrendingUp, ArrowRight, ShieldCheck, TrendingUp as TrendingUpIcon, Users as UsersIcon, Clock, Star, Heart, ShoppingCart, CheckCircle, PlayCircle, BarChart3, Plus, CreditCard, FileQuestion } from 'lucide-react';
 import heroImage from '../../../assets/study.png';
 import { formatINR } from '../../../utils/currency';
 

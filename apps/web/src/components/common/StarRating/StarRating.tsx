@@ -1,5 +1,5 @@
 interface StarRatingProps {
-    rating: number;
+    rating: number | string;
     maxRating?: number;
     size?: number; // size in pixels
 }
@@ -23,10 +23,13 @@ export const StarRating = ({
     size = 20, 
 }: StarRatingProps) => {
 
+    // Convert to number for calculations
+    const numericRating = typeof rating === 'string' ? parseFloat(rating) || 0 : rating;
+
     return (
         <div className="flex items-center">
             {[...Array(maxRating)].map((_, index) => {
-                const starIsFilled = index < Math.floor(rating);
+                const starIsFilled = index < Math.floor(numericRating);
                 return (
                     <StarIcon
                         key={index}

@@ -5,7 +5,7 @@ import { BookOpen, MapPin, Tag, ShoppingCart, Heart, Loader2, Check } from 'luci
 import { useCart } from '../../../context/CartContext';
 import { wishlistService } from '../../../services/wishlist.service';
 import { useAuth } from '../../../context/AuthContext';
-import { formatINR } from '../../../utils/currency';
+import { formatINR, toNumber } from '../../../utils/currency';
 
 interface NoteCardProps {
     note: Note;
@@ -110,8 +110,8 @@ export const NoteCard: React.FC<NoteCardProps> = ({ note, onWishlistToggle }) =>
                                 <span className="text-xl font-black text-gray-900">
                                     {formatINR(note.price)}
                                 </span>
-                                <span className="text-sm text-gray-400 line-through">
-                                    {formatINR(note.price * 1.25)}
+                            <span className="text-sm text-gray-400 line-through">
+                                    {formatINR(toNumber(note.price) * 1.25)}
                                 </span>
                             </div>
                             <span className="text-xs text-green-600 font-semibold gap-1 flex items-center mt-0.5">

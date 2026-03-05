@@ -18,7 +18,7 @@ import { useAuth } from '../../context/AuthContext';
 import { notesService } from '../../services/notes.service';
 import { userService } from '../../services/user.service';
 import { Note } from '../../types/note.types';
-import { formatINR } from '../../utils/currency';
+import { formatINR, toNumber } from '../../utils/currency';
 
 interface DashboardStats {
     totalEarnings: number;
@@ -326,11 +326,11 @@ export function SellerDashboard() {
                         <div className="bg-white rounded-xl shadow-sm p-6">
                             <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Performing Products</h3>
                             <div className="space-y-4">
-                                {notes.sort((a, b) => (b.purchaseCount || 0) - (a.purchaseCount || 0)).slice(0, 5).map((note, index) => (
+                                {notes.sort((a, b) => toNumber(b.purchaseCount) - toNumber(a.purchaseCount)).slice(0, 5).map((note, index) => (
                                     <div key={note.id} className="flex items-center">
                                         <span className="w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-sm mr-4">{index + 1}</span>
                                         <div className="flex-1"><p className="font-medium text-gray-900">{note.title}</p><p className="text-sm text-gray-500">{note.purchaseCount || 0} sales</p></div>
-                                        <div className="text-right"><p className="font-bold text-gray-900">{formatINR((note.purchaseCount || 0) * (note.price || 0))}</p></div>
+                                        <div className="text-right"><p className="font-bold text-gray-900">{formatINR(toNumber(note.purchaseCount) * toNumber(note.price))}</p></div>
                                     </div>
                                 ))}
                                 {notes.length === 0 && <p className="text-gray-500 text-center py-8">No products yet</p>}

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingCart, Menu, X, Heart, MessageSquare, LayoutDashboard, LogOut, ChevronDown, ChevronRight, Store, Briefcase, Info } from 'lucide-react';
+import { Search, ShoppingCart, X, LayoutDashboard, ChevronDown, ChevronRight, Store, Briefcase, Info } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
 import { useCart } from '../../../context/CartContext';
 import { useState, useRef, useEffect } from 'react';
@@ -43,8 +43,8 @@ interface NavbarProps {
     onMenuClick?: () => void;
 }
 
-export const Navbar = ({ onMenuClick }: NavbarProps) => {
-    const { user, logout, isSignedIn } = useAuth();
+export const Navbar = () => {
+    const { isSignedIn } = useAuth();
     const { itemCount } = useCart();
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');

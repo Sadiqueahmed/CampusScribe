@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, User, ShoppingCart, Heart, MessageSquare, LayoutDashboard, LogOut, Menu, BookOpen, Calculator, FlaskConical, Palette, Briefcase, Stethoscope, Scale, TrendingUp, Star, Search } from 'lucide-react';
+import { X, ShoppingCart, Heart, MessageSquare, LayoutDashboard, LogOut, Menu, BookOpen, Calculator, FlaskConical, Palette, Briefcase, Stethoscope, Scale, TrendingUp, Star, Search } from 'lucide-react';
+import { UserProfile } from '../../../types/user.types';
 
 interface MobileDrawerProps {
     isOpen: boolean;
     onClose: () => void;
-    user: any;
+    user: UserProfile | null;
     logout: () => void;
 }
 
@@ -103,7 +104,7 @@ export const MobileDrawer = ({ isOpen, onClose, user, logout }: MobileDrawerProp
                             <Briefcase size={20} />
                             Categories
                         </span>
-                        <span className={`transform transition-transform ₹{showCategories ? 'rotate-180' : ''}`}>
+                        <span className={`transform transition-transform ${showCategories ? 'rotate-180' : ''}`}>
                             ▼
                         </span>
                     </button>

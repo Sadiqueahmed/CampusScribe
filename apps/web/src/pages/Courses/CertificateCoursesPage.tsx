@@ -90,11 +90,11 @@ const CertificateCoursesPage = () => {
                             <div className="text-sm text-blue-100">Courses</div>
                         </div>
                         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold">{courses.filter(c => c.price === 0).length}</div>
+                            <div className="text-2xl font-bold">{courses.filter(c => (c.price ?? 0) === 0).length}</div>
                             <div className="text-sm text-blue-100">Free</div>
                         </div>
                         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold">{courses.filter(c => c.price > 0).length}</div>
+                            <div className="text-2xl font-bold">{courses.filter(c => (c.price ?? 0) > 0).length}</div>
                             <div className="text-sm text-blue-100">Paid</div>
                         </div>
                         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">

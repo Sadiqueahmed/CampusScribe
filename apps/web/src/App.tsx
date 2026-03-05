@@ -44,12 +44,14 @@ import { notesService } from './services/notes.service';
 import { NoteCard } from './components/notes/NoteCard/NoteCard';
 import { ArrowRight, BookOpen, TrendingUp, Star } from 'lucide-react';
 
+import { Note } from './types/note.types';
+
 // Get Clerk publishable key from environment
 const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || 'pk_test_cHJvcGVyLXBlYWNvY2stNzIuY2xlcmsuYWNjb3VudHMuZGV2JA';
 
 function Home() {
-    const [featuredNotes, setFeaturedNotes] = useState<any[]>([]);
-    const [trendingNotes, setTrendingNotes] = useState<any[]>([]);
+    const [featuredNotes, setFeaturedNotes] = useState<Note[]>([]);
+    const [trendingNotes, setTrendingNotes] = useState<Note[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
